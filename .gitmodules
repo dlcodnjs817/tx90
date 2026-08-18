@@ -1,0 +1,3 @@
+[submodule "staubli_tx2_90_support/staubli_experimental"]
+	path = staubli_tx2_90_support/staubli_experimental
+	url = https://github.com/ros-industrial/staubli_experimental.git

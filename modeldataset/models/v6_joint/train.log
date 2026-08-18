@@ -1,0 +1,715 @@
+WARNING 2026-08-14 10:35:59 deo_utils.py:37 'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+INFO 2026-08-14 10:36:00 ts/train.py:111 {'batch_size': 8,
+ 'dataset': {'episodes': None,
+             'image_transforms': {'enable': False,
+                                  'max_num_transforms': 3,
+                                  'random_order': False,
+                                  'tfs': {'brightness': {'kwargs': {'brightness': [0.8,
+                                                                                   1.2]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'contrast': {'kwargs': {'contrast': [0.8,
+                                                                               1.2]},
+                                                       'type': 'ColorJitter',
+                                                       'weight': 1.0},
+                                          'hue': {'kwargs': {'hue': [-0.05,
+                                                                     0.05]},
+                                                  'type': 'ColorJitter',
+                                                  'weight': 1.0},
+                                          'saturation': {'kwargs': {'saturation': [0.5,
+                                                                                   1.5]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'sharpness': {'kwargs': {'sharpness': [0.5,
+                                                                                 1.5]},
+                                                        'type': 'SharpnessJitter',
+                                                        'weight': 1.0}}},
+             'repo_id': 'dlcodnjs/tx90_act_pick_and_place_v6_joint',
+             'revision': None,
+             'root': None,
+             'use_imagenet_stats': True,
+             'video_backend': 'pyav'},
+ 'env': None,
+ 'eval': {'batch_size': 50, 'n_episodes': 50, 'use_async_envs': False},
+ 'eval_freq': 20000,
+ 'job_name': 'tx90_act_joint_v6',
+ 'log_freq': 200,
+ 'num_workers': 4,
+ 'optimizer': {'betas': [0.9, 0.999],
+               'eps': 1e-08,
+               'grad_clip_norm': 10.0,
+               'lr': 1e-05,
+               'type': 'adamw',
+               'weight_decay': 0.0001},
+ 'output_dir': '/root/train_tx90_act_v6_joint',
+ 'policy': {'chunk_size': 100,
+            'device': 'cuda',
+            'dim_feedforward': 3200,
+            'dim_model': 512,
+            'dropout': 0.1,
+            'feedforward_activation': 'relu',
+            'input_features': {'observation.images.camera1': {'shape': [3,
+                                                                        480,
+                                                                        640],
+                                                              'type': <FeatureType.VISUAL: 'VISUAL'>},
+                               'observation.images.camera2': {'shape': [3,
+                                                                        480,
+                                                                        640],
+                                                              'type': <FeatureType.VISUAL: 'VISUAL'>},
+                               'observation.state': {'shape': [7],
+                                                     'type': <FeatureType.STATE: 'STATE'>}},
+            'kl_weight': 10.0,
+            'latent_dim': 32,
+            'license': None,
+            'n_action_steps': 100,
+            'n_decoder_layers': 1,
+            'n_encoder_layers': 4,
+            'n_heads': 8,
+            'n_obs_steps': 1,
+            'n_vae_encoder_layers': 4,
+            'normalization_mapping': {'ACTION': <NormalizationMode.MEAN_STD: 'MEAN_STD'>,
+                                      'STATE': <NormalizationMode.MEAN_STD: 'MEAN_STD'>,
+                                      'VISUAL': <NormalizationMode.MEAN_STD: 'MEAN_STD'>},
+            'optimizer_lr': 1e-05,
+            'optimizer_lr_backbone': 1e-05,
+            'optimizer_weight_decay': 0.0001,
+            'output_features': {'action': {'shape': [7],
+                                           'type': <FeatureType.ACTION: 'ACTION'>}},
+            'pre_norm': False,
+            'pretrained_backbone_weights': 'ResNet18_Weights.IMAGENET1K_V1',
+            'private': None,
+            'push_to_hub': False,
+            'replace_final_stride_with_dilation': 0,
+            'repo_id': None,
+            'tags': None,
+            'temporal_ensemble_coeff': None,
+            'type': 'act',
+            'use_amp': False,
+            'use_vae': True,
+            'vision_backbone': 'resnet18'},
+ 'resume': False,
+ 'save_checkpoint': True,
+ 'save_freq': 10000,
+ 'scheduler': None,
+ 'seed': 1000,
+ 'steps': 100000,
+ 'use_policy_training_preset': True,
+ 'wandb': {'disable_artifact': False,
+           'enable': False,
+           'entity': None,
+           'mode': None,
+           'notes': None,
+           'project': 'lerobot',
+           'run_id': None}}
+INFO 2026-08-14 10:36:00 ts/train.py:117 Logs will be saved locally.
+INFO 2026-08-14 10:36:00 ts/train.py:127 Creating dataset
+Downloading data:   0%|          | 0/159 [00:00<?, ?files/s]Downloading data: 100%|██████████| 159/159 [00:00<00:00, 103330.39files/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 76345 examples [00:00, 783544.19 examples/s]
+INFO 2026-08-14 10:36:01 ts/train.py:138 Creating policy
+INFO 2026-08-14 10:36:02 ts/train.py:144 Creating optimizer and scheduler
+INFO 2026-08-14 10:36:02 ts/train.py:156 Output dir: /root/train_tx90_act_v6_joint
+INFO 2026-08-14 10:36:02 ts/train.py:159 cfg.steps=100000 (100K)
+INFO 2026-08-14 10:36:02 ts/train.py:160 dataset.num_frames=76345 (76K)
+INFO 2026-08-14 10:36:02 ts/train.py:161 dataset.num_episodes=159
+INFO 2026-08-14 10:36:02 ts/train.py:162 num_learnable_params=51599239 (52M)
+INFO 2026-08-14 10:36:02 ts/train.py:163 num_total_params=51599293 (52M)
+INFO 2026-08-14 10:36:02 ts/train.py:202 Start offline training on a fixed dataset
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+INFO 2026-08-14 10:36:31 ts/train.py:232 step:200 smpl:2K ep:3 epch:0.02 loss:6.921 grdn:156.993 lr:1.0e-05 updt_s:0.137 data_s:0.004
+INFO 2026-08-14 10:36:51 ts/train.py:232 step:400 smpl:3K ep:7 epch:0.04 loss:3.024 grdn:86.421 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:37:11 ts/train.py:232 step:600 smpl:5K ep:10 epch:0.06 loss:2.564 grdn:75.600 lr:1.0e-05 updt_s:0.100 data_s:0.000
+INFO 2026-08-14 10:37:32 ts/train.py:232 step:800 smpl:6K ep:13 epch:0.08 loss:2.260 grdn:70.227 lr:1.0e-05 updt_s:0.100 data_s:0.000
+INFO 2026-08-14 10:37:52 ts/train.py:232 step:1K smpl:8K ep:17 epch:0.10 loss:2.031 grdn:65.430 lr:1.0e-05 updt_s:0.101 data_s:0.000
+INFO 2026-08-14 10:38:12 ts/train.py:232 step:1K smpl:10K ep:20 epch:0.13 loss:1.834 grdn:63.477 lr:1.0e-05 updt_s:0.101 data_s:0.000
+INFO 2026-08-14 10:38:33 ts/train.py:232 step:1K smpl:11K ep:23 epch:0.15 loss:1.695 grdn:60.145 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:38:54 ts/train.py:232 step:2K smpl:13K ep:27 epch:0.17 loss:1.530 grdn:57.043 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:39:14 ts/train.py:232 step:2K smpl:14K ep:30 epch:0.19 loss:1.395 grdn:54.226 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:39:35 ts/train.py:232 step:2K smpl:16K ep:33 epch:0.21 loss:1.280 grdn:51.836 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:39:56 ts/train.py:232 step:2K smpl:18K ep:37 epch:0.23 loss:1.157 grdn:49.265 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:40:16 ts/train.py:232 step:2K smpl:19K ep:40 epch:0.25 loss:1.065 grdn:47.538 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:40:37 ts/train.py:232 step:3K smpl:21K ep:43 epch:0.27 loss:0.963 grdn:44.361 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:40:58 ts/train.py:232 step:3K smpl:22K ep:47 epch:0.29 loss:0.885 grdn:41.465 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:41:19 ts/train.py:232 step:3K smpl:24K ep:50 epch:0.31 loss:0.797 grdn:40.231 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:41:40 ts/train.py:232 step:3K smpl:26K ep:53 epch:0.34 loss:0.736 grdn:37.747 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:42:00 ts/train.py:232 step:3K smpl:27K ep:57 epch:0.36 loss:0.676 grdn:36.430 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 10:42:21 ts/train.py:232 step:4K smpl:29K ep:60 epch:0.38 loss:0.619 grdn:34.437 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:42:42 ts/train.py:232 step:4K smpl:30K ep:63 epch:0.40 loss:0.572 grdn:32.433 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:43:03 ts/train.py:232 step:4K smpl:32K ep:67 epch:0.42 loss:0.528 grdn:31.686 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:43:23 ts/train.py:232 step:4K smpl:34K ep:70 epch:0.44 loss:0.493 grdn:30.353 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 10:43:44 ts/train.py:232 step:4K smpl:35K ep:73 epch:0.46 loss:0.461 grdn:29.028 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 10:44:05 ts/train.py:232 step:5K smpl:37K ep:77 epch:0.48 loss:0.438 grdn:28.096 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:44:25 ts/train.py:232 step:5K smpl:38K ep:80 epch:0.50 loss:0.416 grdn:27.537 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:44:46 ts/train.py:232 step:5K smpl:40K ep:83 epch:0.52 loss:0.385 grdn:26.256 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:45:07 ts/train.py:232 step:5K smpl:42K ep:87 epch:0.54 loss:0.371 grdn:25.897 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:45:27 ts/train.py:232 step:5K smpl:43K ep:90 epch:0.57 loss:0.352 grdn:24.806 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:45:48 ts/train.py:232 step:6K smpl:45K ep:93 epch:0.59 loss:0.339 grdn:23.556 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:46:08 ts/train.py:232 step:6K smpl:46K ep:97 epch:0.61 loss:0.324 grdn:23.426 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:46:29 ts/train.py:232 step:6K smpl:48K ep:100 epch:0.63 loss:0.310 grdn:22.483 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:46:50 ts/train.py:232 step:6K smpl:50K ep:103 epch:0.65 loss:0.298 grdn:22.296 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:47:10 ts/train.py:232 step:6K smpl:51K ep:107 epch:0.67 loss:0.284 grdn:21.593 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:47:31 ts/train.py:232 step:7K smpl:53K ep:110 epch:0.69 loss:0.275 grdn:21.156 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:47:51 ts/train.py:232 step:7K smpl:54K ep:113 epch:0.71 loss:0.270 grdn:21.020 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:48:12 ts/train.py:232 step:7K smpl:56K ep:117 epch:0.73 loss:0.262 grdn:20.664 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:48:33 ts/train.py:232 step:7K smpl:58K ep:120 epch:0.75 loss:0.259 grdn:20.203 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:48:53 ts/train.py:232 step:7K smpl:59K ep:123 epch:0.78 loss:0.249 grdn:20.017 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:49:14 ts/train.py:232 step:8K smpl:61K ep:127 epch:0.80 loss:0.250 grdn:19.851 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:49:35 ts/train.py:232 step:8K smpl:62K ep:130 epch:0.82 loss:0.235 grdn:18.987 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:49:55 ts/train.py:232 step:8K smpl:64K ep:133 epch:0.84 loss:0.234 grdn:19.039 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:50:16 ts/train.py:232 step:8K smpl:66K ep:137 epch:0.86 loss:0.229 grdn:18.103 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:50:36 ts/train.py:232 step:8K smpl:67K ep:140 epch:0.88 loss:0.220 grdn:18.622 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:50:57 ts/train.py:232 step:9K smpl:69K ep:143 epch:0.90 loss:0.217 grdn:18.498 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:51:17 ts/train.py:232 step:9K smpl:70K ep:147 epch:0.92 loss:0.217 grdn:17.622 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:51:38 ts/train.py:232 step:9K smpl:72K ep:150 epch:0.94 loss:0.215 grdn:17.566 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 10:51:59 ts/train.py:232 step:9K smpl:74K ep:153 epch:0.96 loss:0.208 grdn:17.793 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:52:19 ts/train.py:232 step:9K smpl:75K ep:157 epch:0.99 loss:0.204 grdn:17.003 lr:1.0e-05 updt_s:0.103 data_s:0.000
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+INFO 2026-08-14 10:52:41 ts/train.py:232 step:10K smpl:77K ep:160 epch:1.01 loss:0.205 grdn:16.968 lr:1.0e-05 updt_s:0.105 data_s:0.001
+INFO 2026-08-14 10:53:02 ts/train.py:232 step:10K smpl:78K ep:163 epch:1.03 loss:0.194 grdn:16.414 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 10:53:23 ts/train.py:232 step:10K smpl:80K ep:167 epch:1.05 loss:0.186 grdn:16.166 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 10:53:23 ts/train.py:241 Checkpoint policy after step 10000
+INFO 2026-08-14 10:53:44 ts/train.py:232 step:10K smpl:82K ep:170 epch:1.07 loss:0.193 grdn:16.369 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 10:54:05 ts/train.py:232 step:10K smpl:83K ep:173 epch:1.09 loss:0.191 grdn:16.462 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:54:25 ts/train.py:232 step:11K smpl:85K ep:177 epch:1.11 loss:0.187 grdn:15.940 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:54:46 ts/train.py:232 step:11K smpl:86K ep:180 epch:1.13 loss:0.184 grdn:15.886 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:55:07 ts/train.py:232 step:11K smpl:88K ep:183 epch:1.15 loss:0.180 grdn:15.349 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:55:28 ts/train.py:232 step:11K smpl:90K ep:187 epch:1.17 loss:0.179 grdn:15.512 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:55:49 ts/train.py:232 step:11K smpl:91K ep:190 epch:1.19 loss:0.176 grdn:15.413 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 10:56:09 ts/train.py:232 step:12K smpl:93K ep:193 epch:1.22 loss:0.175 grdn:15.175 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:56:30 ts/train.py:232 step:12K smpl:94K ep:197 epch:1.24 loss:0.169 grdn:14.656 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:56:51 ts/train.py:232 step:12K smpl:96K ep:200 epch:1.26 loss:0.173 grdn:15.054 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:57:12 ts/train.py:232 step:12K smpl:98K ep:203 epch:1.28 loss:0.172 grdn:14.898 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:57:33 ts/train.py:232 step:12K smpl:99K ep:207 epch:1.30 loss:0.167 grdn:14.460 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:57:54 ts/train.py:232 step:13K smpl:101K ep:210 epch:1.32 loss:0.173 grdn:14.793 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 10:58:14 ts/train.py:232 step:13K smpl:102K ep:213 epch:1.34 loss:0.168 grdn:14.644 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:58:35 ts/train.py:232 step:13K smpl:104K ep:217 epch:1.36 loss:0.159 grdn:14.021 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:58:56 ts/train.py:232 step:13K smpl:106K ep:220 epch:1.38 loss:0.161 grdn:14.262 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 10:59:17 ts/train.py:232 step:13K smpl:107K ep:223 epch:1.40 loss:0.157 grdn:13.909 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:59:37 ts/train.py:232 step:14K smpl:109K ep:227 epch:1.43 loss:0.155 grdn:13.467 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 10:59:58 ts/train.py:232 step:14K smpl:110K ep:230 epch:1.45 loss:0.152 grdn:13.420 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:00:19 ts/train.py:232 step:14K smpl:112K ep:233 epch:1.47 loss:0.154 grdn:13.803 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:00:40 ts/train.py:232 step:14K smpl:114K ep:237 epch:1.49 loss:0.153 grdn:13.842 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:01:00 ts/train.py:232 step:14K smpl:115K ep:240 epch:1.51 loss:0.152 grdn:13.476 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:01:21 ts/train.py:232 step:15K smpl:117K ep:243 epch:1.53 loss:0.146 grdn:13.201 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:01:42 ts/train.py:232 step:15K smpl:118K ep:247 epch:1.55 loss:0.148 grdn:13.453 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:02:02 ts/train.py:232 step:15K smpl:120K ep:250 epch:1.57 loss:0.149 grdn:13.364 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:02:23 ts/train.py:232 step:15K smpl:122K ep:253 epch:1.59 loss:0.149 grdn:13.598 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:02:44 ts/train.py:232 step:15K smpl:123K ep:257 epch:1.61 loss:0.142 grdn:12.992 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:03:04 ts/train.py:232 step:16K smpl:125K ep:260 epch:1.63 loss:0.141 grdn:13.136 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:03:25 ts/train.py:232 step:16K smpl:126K ep:263 epch:1.66 loss:0.142 grdn:12.874 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:03:46 ts/train.py:232 step:16K smpl:128K ep:267 epch:1.68 loss:0.143 grdn:12.945 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:04:06 ts/train.py:232 step:16K smpl:130K ep:270 epch:1.70 loss:0.139 grdn:12.728 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:04:27 ts/train.py:232 step:16K smpl:131K ep:273 epch:1.72 loss:0.135 grdn:12.253 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:04:48 ts/train.py:232 step:17K smpl:133K ep:277 epch:1.74 loss:0.136 grdn:12.122 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:05:08 ts/train.py:232 step:17K smpl:134K ep:280 epch:1.76 loss:0.136 grdn:12.046 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:05:29 ts/train.py:232 step:17K smpl:136K ep:283 epch:1.78 loss:0.136 grdn:12.312 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:05:50 ts/train.py:232 step:17K smpl:138K ep:287 epch:1.80 loss:0.134 grdn:12.271 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:06:10 ts/train.py:232 step:17K smpl:139K ep:290 epch:1.82 loss:0.132 grdn:11.904 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:06:31 ts/train.py:232 step:18K smpl:141K ep:293 epch:1.84 loss:0.133 grdn:11.559 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:06:52 ts/train.py:232 step:18K smpl:142K ep:297 epch:1.87 loss:0.129 grdn:11.564 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:07:12 ts/train.py:232 step:18K smpl:144K ep:300 epch:1.89 loss:0.134 grdn:12.564 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:07:33 ts/train.py:232 step:18K smpl:146K ep:303 epch:1.91 loss:0.128 grdn:12.113 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:07:54 ts/train.py:232 step:18K smpl:147K ep:307 epch:1.93 loss:0.131 grdn:12.051 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:08:14 ts/train.py:232 step:19K smpl:149K ep:310 epch:1.95 loss:0.127 grdn:11.343 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:08:35 ts/train.py:232 step:19K smpl:150K ep:313 epch:1.97 loss:0.125 grdn:11.748 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:08:56 ts/train.py:232 step:19K smpl:152K ep:317 epch:1.99 loss:0.126 grdn:11.880 lr:1.0e-05 updt_s:0.103 data_s:0.000
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+INFO 2026-08-14 11:09:17 ts/train.py:232 step:19K smpl:154K ep:320 epch:2.01 loss:0.126 grdn:11.332 lr:1.0e-05 updt_s:0.103 data_s:0.001
+INFO 2026-08-14 11:09:38 ts/train.py:232 step:19K smpl:155K ep:323 epch:2.03 loss:0.121 grdn:11.346 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:09:58 ts/train.py:232 step:20K smpl:157K ep:327 epch:2.05 loss:0.120 grdn:11.231 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:10:19 ts/train.py:232 step:20K smpl:158K ep:330 epch:2.07 loss:0.117 grdn:10.647 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:10:40 ts/train.py:232 step:20K smpl:160K ep:333 epch:2.10 loss:0.119 grdn:11.626 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:10:40 ts/train.py:241 Checkpoint policy after step 20000
+INFO 2026-08-14 11:11:01 ts/train.py:232 step:20K smpl:162K ep:337 epch:2.12 loss:0.121 grdn:10.986 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:11:22 ts/train.py:232 step:20K smpl:163K ep:340 epch:2.14 loss:0.120 grdn:10.822 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:11:43 ts/train.py:232 step:21K smpl:165K ep:343 epch:2.16 loss:0.117 grdn:10.659 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:12:03 ts/train.py:232 step:21K smpl:166K ep:347 epch:2.18 loss:0.119 grdn:11.096 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:12:24 ts/train.py:232 step:21K smpl:168K ep:350 epch:2.20 loss:0.113 grdn:10.370 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:12:45 ts/train.py:232 step:21K smpl:170K ep:353 epch:2.22 loss:0.116 grdn:10.961 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:13:06 ts/train.py:232 step:21K smpl:171K ep:357 epch:2.24 loss:0.114 grdn:10.773 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:13:26 ts/train.py:232 step:22K smpl:173K ep:360 epch:2.26 loss:0.115 grdn:10.560 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:13:47 ts/train.py:232 step:22K smpl:174K ep:363 epch:2.28 loss:0.114 grdn:10.797 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:14:08 ts/train.py:232 step:22K smpl:176K ep:367 epch:2.31 loss:0.114 grdn:10.870 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:14:28 ts/train.py:232 step:22K smpl:178K ep:370 epch:2.33 loss:0.111 grdn:10.368 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:14:49 ts/train.py:232 step:22K smpl:179K ep:373 epch:2.35 loss:0.112 grdn:9.970 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:15:09 ts/train.py:232 step:23K smpl:181K ep:377 epch:2.37 loss:0.111 grdn:10.147 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:15:30 ts/train.py:232 step:23K smpl:182K ep:380 epch:2.39 loss:0.107 grdn:10.331 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:15:51 ts/train.py:232 step:23K smpl:184K ep:383 epch:2.41 loss:0.109 grdn:9.890 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:16:11 ts/train.py:232 step:23K smpl:186K ep:387 epch:2.43 loss:0.110 grdn:10.327 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:16:32 ts/train.py:232 step:23K smpl:187K ep:390 epch:2.45 loss:0.107 grdn:10.039 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:16:53 ts/train.py:232 step:24K smpl:189K ep:393 epch:2.47 loss:0.108 grdn:10.035 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:17:14 ts/train.py:232 step:24K smpl:190K ep:397 epch:2.49 loss:0.107 grdn:10.129 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:17:34 ts/train.py:232 step:24K smpl:192K ep:400 epch:2.51 loss:0.108 grdn:10.050 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:17:55 ts/train.py:232 step:24K smpl:194K ep:403 epch:2.54 loss:0.109 grdn:10.206 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:18:16 ts/train.py:232 step:24K smpl:195K ep:407 epch:2.56 loss:0.106 grdn:9.809 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:18:37 ts/train.py:232 step:25K smpl:197K ep:410 epch:2.58 loss:0.104 grdn:9.662 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:18:58 ts/train.py:232 step:25K smpl:198K ep:413 epch:2.60 loss:0.107 grdn:10.165 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:19:19 ts/train.py:232 step:25K smpl:200K ep:417 epch:2.62 loss:0.104 grdn:9.944 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:19:39 ts/train.py:232 step:25K smpl:202K ep:420 epch:2.64 loss:0.102 grdn:9.671 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:20:00 ts/train.py:232 step:25K smpl:203K ep:423 epch:2.66 loss:0.101 grdn:9.419 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:20:21 ts/train.py:232 step:26K smpl:205K ep:427 epch:2.68 loss:0.102 grdn:9.248 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:20:42 ts/train.py:232 step:26K smpl:206K ep:430 epch:2.70 loss:0.104 grdn:9.567 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:21:03 ts/train.py:232 step:26K smpl:208K ep:433 epch:2.72 loss:0.106 grdn:9.776 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:21:23 ts/train.py:232 step:26K smpl:210K ep:437 epch:2.75 loss:0.102 grdn:9.673 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:21:44 ts/train.py:232 step:26K smpl:211K ep:440 epch:2.77 loss:0.102 grdn:9.338 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:22:05 ts/train.py:232 step:27K smpl:213K ep:443 epch:2.79 loss:0.100 grdn:9.209 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:22:25 ts/train.py:232 step:27K smpl:214K ep:447 epch:2.81 loss:0.101 grdn:9.350 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:22:46 ts/train.py:232 step:27K smpl:216K ep:450 epch:2.83 loss:0.102 grdn:9.442 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:23:06 ts/train.py:232 step:27K smpl:218K ep:453 epch:2.85 loss:0.100 grdn:8.996 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:23:27 ts/train.py:232 step:27K smpl:219K ep:457 epch:2.87 loss:0.102 grdn:9.286 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:23:48 ts/train.py:232 step:28K smpl:221K ep:460 epch:2.89 loss:0.101 grdn:9.411 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:24:08 ts/train.py:232 step:28K smpl:222K ep:463 epch:2.91 loss:0.096 grdn:8.965 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:24:29 ts/train.py:232 step:28K smpl:224K ep:467 epch:2.93 loss:0.099 grdn:9.556 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:24:50 ts/train.py:232 step:28K smpl:226K ep:470 epch:2.96 loss:0.098 grdn:9.036 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:25:10 ts/train.py:232 step:28K smpl:227K ep:473 epch:2.98 loss:0.097 grdn:9.171 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:25:31 ts/train.py:232 step:29K smpl:229K ep:477 epch:3.00 loss:0.096 grdn:8.865 lr:1.0e-05 updt_s:0.103 data_s:0.000
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+INFO 2026-08-14 11:25:52 ts/train.py:232 step:29K smpl:230K ep:480 epch:3.02 loss:0.094 grdn:9.356 lr:1.0e-05 updt_s:0.103 data_s:0.001
+INFO 2026-08-14 11:26:13 ts/train.py:232 step:29K smpl:232K ep:483 epch:3.04 loss:0.095 grdn:8.801 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:26:33 ts/train.py:232 step:29K smpl:234K ep:487 epch:3.06 loss:0.094 grdn:8.888 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:26:54 ts/train.py:232 step:29K smpl:235K ep:490 epch:3.08 loss:0.094 grdn:8.951 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:27:15 ts/train.py:232 step:30K smpl:237K ep:493 epch:3.10 loss:0.095 grdn:8.723 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:27:36 ts/train.py:232 step:30K smpl:238K ep:497 epch:3.12 loss:0.092 grdn:8.787 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:27:56 ts/train.py:232 step:30K smpl:240K ep:500 epch:3.14 loss:0.092 grdn:8.680 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:27:56 ts/train.py:241 Checkpoint policy after step 30000
+INFO 2026-08-14 11:28:17 ts/train.py:232 step:30K smpl:242K ep:503 epch:3.16 loss:0.090 grdn:8.560 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:28:38 ts/train.py:232 step:30K smpl:243K ep:507 epch:3.19 loss:0.091 grdn:8.356 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:28:59 ts/train.py:232 step:31K smpl:245K ep:510 epch:3.21 loss:0.094 grdn:8.933 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:29:20 ts/train.py:232 step:31K smpl:246K ep:513 epch:3.23 loss:0.092 grdn:8.719 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:29:40 ts/train.py:232 step:31K smpl:248K ep:516 epch:3.25 loss:0.092 grdn:8.574 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:30:01 ts/train.py:232 step:31K smpl:250K ep:520 epch:3.27 loss:0.092 grdn:8.666 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:30:22 ts/train.py:232 step:31K smpl:251K ep:523 epch:3.29 loss:0.090 grdn:8.685 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:30:42 ts/train.py:232 step:32K smpl:253K ep:526 epch:3.31 loss:0.091 grdn:8.667 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:31:03 ts/train.py:232 step:32K smpl:254K ep:530 epch:3.33 loss:0.090 grdn:8.344 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:31:23 ts/train.py:232 step:32K smpl:256K ep:533 epch:3.35 loss:0.089 grdn:8.492 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:31:44 ts/train.py:232 step:32K smpl:258K ep:536 epch:3.37 loss:0.089 grdn:7.990 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:32:05 ts/train.py:232 step:32K smpl:259K ep:540 epch:3.40 loss:0.088 grdn:8.568 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:32:26 ts/train.py:232 step:33K smpl:261K ep:543 epch:3.42 loss:0.086 grdn:8.142 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:32:46 ts/train.py:232 step:33K smpl:262K ep:546 epch:3.44 loss:0.090 grdn:8.421 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:33:07 ts/train.py:232 step:33K smpl:264K ep:550 epch:3.46 loss:0.091 grdn:8.766 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:33:28 ts/train.py:232 step:33K smpl:266K ep:553 epch:3.48 loss:0.090 grdn:8.591 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:33:49 ts/train.py:232 step:33K smpl:267K ep:556 epch:3.50 loss:0.092 grdn:8.633 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:34:10 ts/train.py:232 step:34K smpl:269K ep:560 epch:3.52 loss:0.089 grdn:8.427 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:34:30 ts/train.py:232 step:34K smpl:270K ep:563 epch:3.54 loss:0.086 grdn:7.941 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:34:51 ts/train.py:232 step:34K smpl:272K ep:566 epch:3.56 loss:0.089 grdn:8.345 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:35:12 ts/train.py:232 step:34K smpl:274K ep:570 epch:3.58 loss:0.087 grdn:8.210 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:35:33 ts/train.py:232 step:34K smpl:275K ep:573 epch:3.60 loss:0.087 grdn:8.267 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:35:53 ts/train.py:232 step:35K smpl:277K ep:576 epch:3.63 loss:0.087 grdn:8.152 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:36:14 ts/train.py:232 step:35K smpl:278K ep:580 epch:3.65 loss:0.088 grdn:8.012 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:36:35 ts/train.py:232 step:35K smpl:280K ep:583 epch:3.67 loss:0.087 grdn:8.089 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:36:55 ts/train.py:232 step:35K smpl:282K ep:586 epch:3.69 loss:0.086 grdn:7.846 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:37:16 ts/train.py:232 step:35K smpl:283K ep:590 epch:3.71 loss:0.085 grdn:8.065 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:37:37 ts/train.py:232 step:36K smpl:285K ep:593 epch:3.73 loss:0.084 grdn:7.690 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:37:57 ts/train.py:232 step:36K smpl:286K ep:596 epch:3.75 loss:0.087 grdn:8.115 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:38:18 ts/train.py:232 step:36K smpl:288K ep:600 epch:3.77 loss:0.085 grdn:7.897 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:38:39 ts/train.py:232 step:36K smpl:290K ep:603 epch:3.79 loss:0.084 grdn:7.948 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:38:59 ts/train.py:232 step:36K smpl:291K ep:606 epch:3.81 loss:0.084 grdn:7.716 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:39:20 ts/train.py:232 step:37K smpl:293K ep:610 epch:3.84 loss:0.084 grdn:8.099 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:39:40 ts/train.py:232 step:37K smpl:294K ep:613 epch:3.86 loss:0.085 grdn:8.009 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:40:01 ts/train.py:232 step:37K smpl:296K ep:616 epch:3.88 loss:0.084 grdn:7.866 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:40:22 ts/train.py:232 step:37K smpl:298K ep:620 epch:3.90 loss:0.086 grdn:7.926 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:40:43 ts/train.py:232 step:37K smpl:299K ep:623 epch:3.92 loss:0.084 grdn:7.789 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:41:03 ts/train.py:232 step:38K smpl:301K ep:626 epch:3.94 loss:0.083 grdn:7.727 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:41:24 ts/train.py:232 step:38K smpl:302K ep:630 epch:3.96 loss:0.083 grdn:7.918 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:41:45 ts/train.py:232 step:38K smpl:304K ep:633 epch:3.98 loss:0.081 grdn:7.732 lr:1.0e-05 updt_s:0.103 data_s:0.000
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+INFO 2026-08-14 11:42:05 ts/train.py:232 step:38K smpl:306K ep:636 epch:4.00 loss:0.083 grdn:7.759 lr:1.0e-05 updt_s:0.102 data_s:0.002
+INFO 2026-08-14 11:42:26 ts/train.py:232 step:38K smpl:307K ep:640 epch:4.02 loss:0.083 grdn:7.802 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:42:47 ts/train.py:232 step:39K smpl:309K ep:643 epch:4.04 loss:0.082 grdn:7.965 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:43:07 ts/train.py:232 step:39K smpl:310K ep:646 epch:4.07 loss:0.081 grdn:7.678 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:43:28 ts/train.py:232 step:39K smpl:312K ep:650 epch:4.09 loss:0.083 grdn:7.555 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:43:49 ts/train.py:232 step:39K smpl:314K ep:653 epch:4.11 loss:0.081 grdn:7.304 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:44:09 ts/train.py:232 step:39K smpl:315K ep:656 epch:4.13 loss:0.081 grdn:7.685 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:44:30 ts/train.py:232 step:40K smpl:317K ep:660 epch:4.15 loss:0.078 grdn:7.539 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:44:51 ts/train.py:232 step:40K smpl:318K ep:663 epch:4.17 loss:0.079 grdn:7.506 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:45:12 ts/train.py:232 step:40K smpl:320K ep:666 epch:4.19 loss:0.080 grdn:7.624 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:45:12 ts/train.py:241 Checkpoint policy after step 40000
+INFO 2026-08-14 11:45:33 ts/train.py:232 step:40K smpl:322K ep:670 epch:4.21 loss:0.079 grdn:7.299 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:45:54 ts/train.py:232 step:40K smpl:323K ep:673 epch:4.23 loss:0.079 grdn:7.211 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:46:14 ts/train.py:232 step:41K smpl:325K ep:676 epch:4.25 loss:0.081 grdn:7.776 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:46:35 ts/train.py:232 step:41K smpl:326K ep:680 epch:4.28 loss:0.078 grdn:7.465 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:46:56 ts/train.py:232 step:41K smpl:328K ep:683 epch:4.30 loss:0.078 grdn:7.281 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:47:17 ts/train.py:232 step:41K smpl:330K ep:686 epch:4.32 loss:0.078 grdn:7.292 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:47:38 ts/train.py:232 step:41K smpl:331K ep:690 epch:4.34 loss:0.077 grdn:7.392 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:47:58 ts/train.py:232 step:42K smpl:333K ep:693 epch:4.36 loss:0.078 grdn:7.362 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:48:19 ts/train.py:232 step:42K smpl:334K ep:696 epch:4.38 loss:0.076 grdn:7.312 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:48:40 ts/train.py:232 step:42K smpl:336K ep:700 epch:4.40 loss:0.076 grdn:7.254 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:49:01 ts/train.py:232 step:42K smpl:338K ep:703 epch:4.42 loss:0.077 grdn:7.405 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:49:22 ts/train.py:232 step:42K smpl:339K ep:706 epch:4.44 loss:0.077 grdn:7.253 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:49:42 ts/train.py:232 step:43K smpl:341K ep:710 epch:4.46 loss:0.075 grdn:7.194 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:50:03 ts/train.py:232 step:43K smpl:342K ep:713 epch:4.48 loss:0.077 grdn:7.379 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:50:24 ts/train.py:232 step:43K smpl:344K ep:716 epch:4.51 loss:0.079 grdn:7.178 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:50:45 ts/train.py:232 step:43K smpl:346K ep:720 epch:4.53 loss:0.078 grdn:7.119 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:51:06 ts/train.py:232 step:43K smpl:347K ep:723 epch:4.55 loss:0.077 grdn:7.299 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:51:26 ts/train.py:232 step:44K smpl:349K ep:726 epch:4.57 loss:0.076 grdn:7.017 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:51:47 ts/train.py:232 step:44K smpl:350K ep:730 epch:4.59 loss:0.075 grdn:7.178 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:52:08 ts/train.py:232 step:44K smpl:352K ep:733 epch:4.61 loss:0.078 grdn:7.321 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:52:28 ts/train.py:232 step:44K smpl:354K ep:736 epch:4.63 loss:0.074 grdn:7.050 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:52:49 ts/train.py:232 step:44K smpl:355K ep:740 epch:4.65 loss:0.075 grdn:7.240 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:53:09 ts/train.py:232 step:45K smpl:357K ep:743 epch:4.67 loss:0.078 grdn:7.269 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:53:30 ts/train.py:232 step:45K smpl:358K ep:746 epch:4.69 loss:0.077 grdn:6.960 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:53:51 ts/train.py:232 step:45K smpl:360K ep:750 epch:4.72 loss:0.073 grdn:6.910 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:54:12 ts/train.py:232 step:45K smpl:362K ep:753 epch:4.74 loss:0.076 grdn:7.171 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:54:33 ts/train.py:232 step:45K smpl:363K ep:756 epch:4.76 loss:0.076 grdn:7.290 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 11:54:53 ts/train.py:232 step:46K smpl:365K ep:760 epch:4.78 loss:0.073 grdn:7.074 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:55:14 ts/train.py:232 step:46K smpl:366K ep:763 epch:4.80 loss:0.077 grdn:7.545 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:55:35 ts/train.py:232 step:46K smpl:368K ep:766 epch:4.82 loss:0.074 grdn:7.173 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:55:55 ts/train.py:232 step:46K smpl:370K ep:770 epch:4.84 loss:0.076 grdn:7.045 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:56:16 ts/train.py:232 step:46K smpl:371K ep:773 epch:4.86 loss:0.075 grdn:7.455 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:56:36 ts/train.py:232 step:47K smpl:373K ep:776 epch:4.88 loss:0.073 grdn:7.198 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 11:56:57 ts/train.py:232 step:47K smpl:374K ep:780 epch:4.90 loss:0.073 grdn:6.773 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:57:18 ts/train.py:232 step:47K smpl:376K ep:783 epch:4.93 loss:0.074 grdn:6.839 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:57:38 ts/train.py:232 step:47K smpl:378K ep:786 epch:4.95 loss:0.070 grdn:6.732 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:57:59 ts/train.py:232 step:47K smpl:379K ep:790 epch:4.97 loss:0.074 grdn:6.968 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:58:19 ts/train.py:232 step:48K smpl:381K ep:793 epch:4.99 loss:0.075 grdn:7.176 lr:1.0e-05 updt_s:0.102 data_s:0.000
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+INFO 2026-08-14 11:58:40 ts/train.py:232 step:48K smpl:382K ep:796 epch:5.01 loss:0.074 grdn:7.454 lr:1.0e-05 updt_s:0.102 data_s:0.001
+INFO 2026-08-14 11:59:01 ts/train.py:232 step:48K smpl:384K ep:800 epch:5.03 loss:0.072 grdn:6.854 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:59:21 ts/train.py:232 step:48K smpl:386K ep:803 epch:5.05 loss:0.072 grdn:6.920 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 11:59:42 ts/train.py:232 step:48K smpl:387K ep:806 epch:5.07 loss:0.072 grdn:6.887 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:00:03 ts/train.py:232 step:49K smpl:389K ep:810 epch:5.09 loss:0.071 grdn:6.888 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:00:23 ts/train.py:232 step:49K smpl:390K ep:813 epch:5.11 loss:0.071 grdn:6.953 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:00:44 ts/train.py:232 step:49K smpl:392K ep:816 epch:5.13 loss:0.072 grdn:7.007 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:01:04 ts/train.py:232 step:49K smpl:394K ep:820 epch:5.16 loss:0.070 grdn:6.483 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:01:25 ts/train.py:232 step:49K smpl:395K ep:823 epch:5.18 loss:0.073 grdn:7.045 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:01:46 ts/train.py:232 step:50K smpl:397K ep:826 epch:5.20 loss:0.069 grdn:6.617 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:02:06 ts/train.py:232 step:50K smpl:398K ep:830 epch:5.22 loss:0.070 grdn:6.762 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:02:27 ts/train.py:232 step:50K smpl:400K ep:833 epch:5.24 loss:0.072 grdn:6.827 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 12:02:27 ts/train.py:241 Checkpoint policy after step 50000
+INFO 2026-08-14 12:02:48 ts/train.py:232 step:50K smpl:402K ep:836 epch:5.26 loss:0.073 grdn:6.946 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 12:03:09 ts/train.py:232 step:50K smpl:403K ep:840 epch:5.28 loss:0.070 grdn:6.855 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:03:30 ts/train.py:232 step:51K smpl:405K ep:843 epch:5.30 loss:0.071 grdn:6.925 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:03:50 ts/train.py:232 step:51K smpl:406K ep:846 epch:5.32 loss:0.071 grdn:6.803 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:04:11 ts/train.py:232 step:51K smpl:408K ep:850 epch:5.34 loss:0.068 grdn:6.633 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:04:32 ts/train.py:232 step:51K smpl:410K ep:853 epch:5.37 loss:0.071 grdn:6.645 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:04:52 ts/train.py:232 step:51K smpl:411K ep:856 epch:5.39 loss:0.068 grdn:6.504 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:05:13 ts/train.py:232 step:52K smpl:413K ep:860 epch:5.41 loss:0.068 grdn:6.726 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:05:34 ts/train.py:232 step:52K smpl:414K ep:863 epch:5.43 loss:0.070 grdn:6.772 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:05:54 ts/train.py:232 step:52K smpl:416K ep:866 epch:5.45 loss:0.068 grdn:6.636 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:06:15 ts/train.py:232 step:52K smpl:418K ep:870 epch:5.47 loss:0.070 grdn:6.593 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:06:35 ts/train.py:232 step:52K smpl:419K ep:873 epch:5.49 loss:0.070 grdn:6.446 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:06:56 ts/train.py:232 step:53K smpl:421K ep:876 epch:5.51 loss:0.068 grdn:6.467 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:07:17 ts/train.py:232 step:53K smpl:422K ep:880 epch:5.53 loss:0.070 grdn:6.744 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:07:37 ts/train.py:232 step:53K smpl:424K ep:883 epch:5.55 loss:0.069 grdn:6.547 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:07:58 ts/train.py:232 step:53K smpl:426K ep:886 epch:5.57 loss:0.068 grdn:6.480 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:08:18 ts/train.py:232 step:53K smpl:427K ep:890 epch:5.60 loss:0.067 grdn:6.613 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:08:39 ts/train.py:232 step:54K smpl:429K ep:893 epch:5.62 loss:0.068 grdn:6.299 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:09:00 ts/train.py:232 step:54K smpl:430K ep:896 epch:5.64 loss:0.068 grdn:6.498 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:09:20 ts/train.py:232 step:54K smpl:432K ep:900 epch:5.66 loss:0.068 grdn:6.676 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:09:41 ts/train.py:232 step:54K smpl:434K ep:903 epch:5.68 loss:0.066 grdn:6.699 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:10:01 ts/train.py:232 step:54K smpl:435K ep:906 epch:5.70 loss:0.068 grdn:6.592 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:10:22 ts/train.py:232 step:55K smpl:437K ep:910 epch:5.72 loss:0.066 grdn:6.489 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:10:43 ts/train.py:232 step:55K smpl:438K ep:913 epch:5.74 loss:0.067 grdn:6.523 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:11:03 ts/train.py:232 step:55K smpl:440K ep:916 epch:5.76 loss:0.068 grdn:6.689 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:11:24 ts/train.py:232 step:55K smpl:442K ep:920 epch:5.78 loss:0.068 grdn:6.498 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:11:45 ts/train.py:232 step:55K smpl:443K ep:923 epch:5.81 loss:0.068 grdn:6.504 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:12:05 ts/train.py:232 step:56K smpl:445K ep:926 epch:5.83 loss:0.067 grdn:6.354 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:12:26 ts/train.py:232 step:56K smpl:446K ep:930 epch:5.85 loss:0.067 grdn:6.339 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:12:47 ts/train.py:232 step:56K smpl:448K ep:933 epch:5.87 loss:0.067 grdn:6.613 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:13:08 ts/train.py:232 step:56K smpl:450K ep:936 epch:5.89 loss:0.067 grdn:6.380 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:13:28 ts/train.py:232 step:56K smpl:451K ep:940 epch:5.91 loss:0.067 grdn:6.540 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:13:49 ts/train.py:232 step:57K smpl:453K ep:943 epch:5.93 loss:0.067 grdn:6.552 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:14:10 ts/train.py:232 step:57K smpl:454K ep:946 epch:5.95 loss:0.066 grdn:6.096 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:14:31 ts/train.py:232 step:57K smpl:456K ep:950 epch:5.97 loss:0.067 grdn:6.269 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:14:51 ts/train.py:232 step:57K smpl:458K ep:953 epch:5.99 loss:0.067 grdn:6.332 lr:1.0e-05 updt_s:0.104 data_s:0.000
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+INFO 2026-08-14 12:15:12 ts/train.py:232 step:57K smpl:459K ep:956 epch:6.01 loss:0.067 grdn:6.309 lr:1.0e-05 updt_s:0.103 data_s:0.001
+INFO 2026-08-14 12:15:33 ts/train.py:232 step:58K smpl:461K ep:960 epch:6.04 loss:0.065 grdn:6.257 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:15:54 ts/train.py:232 step:58K smpl:462K ep:963 epch:6.06 loss:0.065 grdn:6.353 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:16:15 ts/train.py:232 step:58K smpl:464K ep:966 epch:6.08 loss:0.066 grdn:6.406 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:16:35 ts/train.py:232 step:58K smpl:466K ep:970 epch:6.10 loss:0.064 grdn:6.207 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:16:56 ts/train.py:232 step:58K smpl:467K ep:973 epch:6.12 loss:0.064 grdn:6.152 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 12:17:17 ts/train.py:232 step:59K smpl:469K ep:976 epch:6.14 loss:0.065 grdn:6.483 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:17:38 ts/train.py:232 step:59K smpl:470K ep:980 epch:6.16 loss:0.065 grdn:6.146 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:17:59 ts/train.py:232 step:59K smpl:472K ep:983 epch:6.18 loss:0.065 grdn:6.278 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:18:19 ts/train.py:232 step:59K smpl:474K ep:986 epch:6.20 loss:0.064 grdn:6.380 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:18:40 ts/train.py:232 step:59K smpl:475K ep:990 epch:6.22 loss:0.065 grdn:6.300 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:19:01 ts/train.py:232 step:60K smpl:477K ep:993 epch:6.25 loss:0.064 grdn:6.335 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:19:22 ts/train.py:232 step:60K smpl:478K ep:996 epch:6.27 loss:0.064 grdn:6.317 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:19:42 ts/train.py:232 step:60K smpl:480K ep:1000 epch:6.29 loss:0.066 grdn:6.585 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:19:42 ts/train.py:241 Checkpoint policy after step 60000
+INFO 2026-08-14 12:20:03 ts/train.py:232 step:60K smpl:482K ep:1K epch:6.31 loss:0.064 grdn:6.437 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:20:24 ts/train.py:232 step:60K smpl:483K ep:1K epch:6.33 loss:0.064 grdn:5.956 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:20:45 ts/train.py:232 step:61K smpl:485K ep:1K epch:6.35 loss:0.065 grdn:6.291 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:21:06 ts/train.py:232 step:61K smpl:486K ep:1K epch:6.37 loss:0.066 grdn:6.379 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 12:21:26 ts/train.py:232 step:61K smpl:488K ep:1K epch:6.39 loss:0.062 grdn:5.994 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:21:47 ts/train.py:232 step:61K smpl:490K ep:1K epch:6.41 loss:0.063 grdn:6.072 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:22:08 ts/train.py:232 step:61K smpl:491K ep:1K epch:6.43 loss:0.063 grdn:6.177 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:22:29 ts/train.py:232 step:62K smpl:493K ep:1K epch:6.45 loss:0.063 grdn:6.120 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:22:50 ts/train.py:232 step:62K smpl:494K ep:1K epch:6.48 loss:0.063 grdn:6.050 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:23:10 ts/train.py:232 step:62K smpl:496K ep:1K epch:6.50 loss:0.065 grdn:6.263 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:23:31 ts/train.py:232 step:62K smpl:498K ep:1K epch:6.52 loss:0.066 grdn:6.539 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:23:52 ts/train.py:232 step:62K smpl:499K ep:1K epch:6.54 loss:0.063 grdn:6.184 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:24:12 ts/train.py:232 step:63K smpl:501K ep:1K epch:6.56 loss:0.061 grdn:6.029 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:24:33 ts/train.py:232 step:63K smpl:502K ep:1K epch:6.58 loss:0.063 grdn:6.023 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:24:54 ts/train.py:232 step:63K smpl:504K ep:1K epch:6.60 loss:0.064 grdn:6.236 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:25:15 ts/train.py:232 step:63K smpl:506K ep:1K epch:6.62 loss:0.064 grdn:6.396 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:25:35 ts/train.py:232 step:63K smpl:507K ep:1K epch:6.64 loss:0.063 grdn:5.910 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:25:56 ts/train.py:232 step:64K smpl:509K ep:1K epch:6.66 loss:0.062 grdn:5.964 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:26:17 ts/train.py:232 step:64K smpl:510K ep:1K epch:6.69 loss:0.063 grdn:6.059 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:26:37 ts/train.py:232 step:64K smpl:512K ep:1K epch:6.71 loss:0.061 grdn:5.951 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:26:58 ts/train.py:232 step:64K smpl:514K ep:1K epch:6.73 loss:0.064 grdn:6.561 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:27:19 ts/train.py:232 step:64K smpl:515K ep:1K epch:6.75 loss:0.062 grdn:5.984 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:27:40 ts/train.py:232 step:65K smpl:517K ep:1K epch:6.77 loss:0.063 grdn:6.366 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:28:00 ts/train.py:232 step:65K smpl:518K ep:1K epch:6.79 loss:0.063 grdn:6.124 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:28:21 ts/train.py:232 step:65K smpl:520K ep:1K epch:6.81 loss:0.062 grdn:6.066 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:28:42 ts/train.py:232 step:65K smpl:522K ep:1K epch:6.83 loss:0.062 grdn:5.713 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:29:02 ts/train.py:232 step:65K smpl:523K ep:1K epch:6.85 loss:0.060 grdn:5.868 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:29:23 ts/train.py:232 step:66K smpl:525K ep:1K epch:6.87 loss:0.062 grdn:6.110 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:29:44 ts/train.py:232 step:66K smpl:526K ep:1K epch:6.90 loss:0.062 grdn:6.138 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:30:04 ts/train.py:232 step:66K smpl:528K ep:1K epch:6.92 loss:0.062 grdn:6.241 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:30:25 ts/train.py:232 step:66K smpl:530K ep:1K epch:6.94 loss:0.060 grdn:5.994 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:30:46 ts/train.py:232 step:66K smpl:531K ep:1K epch:6.96 loss:0.060 grdn:5.977 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:31:06 ts/train.py:232 step:67K smpl:533K ep:1K epch:6.98 loss:0.061 grdn:5.861 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:31:27 ts/train.py:232 step:67K smpl:534K ep:1K epch:7.00 loss:0.061 grdn:6.030 lr:1.0e-05 updt_s:0.103 data_s:0.000
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+INFO 2026-08-14 12:31:48 ts/train.py:232 step:67K smpl:536K ep:1K epch:7.02 loss:0.061 grdn:6.369 lr:1.0e-05 updt_s:0.102 data_s:0.001
+INFO 2026-08-14 12:32:09 ts/train.py:232 step:67K smpl:538K ep:1K epch:7.04 loss:0.059 grdn:5.605 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:32:30 ts/train.py:232 step:67K smpl:539K ep:1K epch:7.06 loss:0.059 grdn:5.816 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:32:50 ts/train.py:232 step:68K smpl:541K ep:1K epch:7.08 loss:0.062 grdn:6.103 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:33:11 ts/train.py:232 step:68K smpl:542K ep:1K epch:7.10 loss:0.060 grdn:6.223 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:33:32 ts/train.py:232 step:68K smpl:544K ep:1K epch:7.13 loss:0.060 grdn:5.981 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:33:52 ts/train.py:232 step:68K smpl:546K ep:1K epch:7.15 loss:0.060 grdn:5.953 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:34:13 ts/train.py:232 step:68K smpl:547K ep:1K epch:7.17 loss:0.059 grdn:5.946 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:34:34 ts/train.py:232 step:69K smpl:549K ep:1K epch:7.19 loss:0.058 grdn:5.681 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:34:55 ts/train.py:232 step:69K smpl:550K ep:1K epch:7.21 loss:0.060 grdn:5.786 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:35:15 ts/train.py:232 step:69K smpl:552K ep:1K epch:7.23 loss:0.059 grdn:5.912 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:35:36 ts/train.py:232 step:69K smpl:554K ep:1K epch:7.25 loss:0.059 grdn:5.844 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:35:57 ts/train.py:232 step:69K smpl:555K ep:1K epch:7.27 loss:0.061 grdn:6.005 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:36:18 ts/train.py:232 step:70K smpl:557K ep:1K epch:7.29 loss:0.058 grdn:5.726 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:36:38 ts/train.py:232 step:70K smpl:558K ep:1K epch:7.31 loss:0.058 grdn:5.712 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:36:59 ts/train.py:232 step:70K smpl:560K ep:1K epch:7.34 loss:0.060 grdn:5.789 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:36:59 ts/train.py:241 Checkpoint policy after step 70000
+INFO 2026-08-14 12:37:20 ts/train.py:232 step:70K smpl:562K ep:1K epch:7.36 loss:0.059 grdn:5.953 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:37:41 ts/train.py:232 step:70K smpl:563K ep:1K epch:7.38 loss:0.059 grdn:5.843 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:38:02 ts/train.py:232 step:71K smpl:565K ep:1K epch:7.40 loss:0.060 grdn:5.837 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:38:22 ts/train.py:232 step:71K smpl:566K ep:1K epch:7.42 loss:0.059 grdn:5.764 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:38:43 ts/train.py:232 step:71K smpl:568K ep:1K epch:7.44 loss:0.062 grdn:5.879 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:39:04 ts/train.py:232 step:71K smpl:570K ep:1K epch:7.46 loss:0.059 grdn:5.807 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:39:25 ts/train.py:232 step:71K smpl:571K ep:1K epch:7.48 loss:0.060 grdn:5.710 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:39:45 ts/train.py:232 step:72K smpl:573K ep:1K epch:7.50 loss:0.060 grdn:5.587 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:40:06 ts/train.py:232 step:72K smpl:574K ep:1K epch:7.52 loss:0.057 grdn:5.536 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:40:27 ts/train.py:232 step:72K smpl:576K ep:1K epch:7.54 loss:0.058 grdn:5.714 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:40:48 ts/train.py:232 step:72K smpl:578K ep:1K epch:7.57 loss:0.057 grdn:5.511 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:41:08 ts/train.py:232 step:72K smpl:579K ep:1K epch:7.59 loss:0.058 grdn:5.798 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 12:41:29 ts/train.py:232 step:73K smpl:581K ep:1K epch:7.61 loss:0.060 grdn:5.837 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:41:50 ts/train.py:232 step:73K smpl:582K ep:1K epch:7.63 loss:0.060 grdn:5.805 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:42:10 ts/train.py:232 step:73K smpl:584K ep:1K epch:7.65 loss:0.058 grdn:5.593 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:42:31 ts/train.py:232 step:73K smpl:586K ep:1K epch:7.67 loss:0.060 grdn:5.777 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:42:52 ts/train.py:232 step:73K smpl:587K ep:1K epch:7.69 loss:0.056 grdn:5.576 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:43:12 ts/train.py:232 step:74K smpl:589K ep:1K epch:7.71 loss:0.059 grdn:6.085 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:43:33 ts/train.py:232 step:74K smpl:590K ep:1K epch:7.73 loss:0.058 grdn:5.727 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:43:53 ts/train.py:232 step:74K smpl:592K ep:1K epch:7.75 loss:0.059 grdn:5.772 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:44:14 ts/train.py:232 step:74K smpl:594K ep:1K epch:7.78 loss:0.058 grdn:5.624 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:44:34 ts/train.py:232 step:74K smpl:595K ep:1K epch:7.80 loss:0.057 grdn:5.597 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:44:55 ts/train.py:232 step:75K smpl:597K ep:1K epch:7.82 loss:0.059 grdn:5.689 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:45:15 ts/train.py:232 step:75K smpl:598K ep:1K epch:7.84 loss:0.056 grdn:5.549 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:45:36 ts/train.py:232 step:75K smpl:600K ep:1K epch:7.86 loss:0.058 grdn:5.636 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:45:56 ts/train.py:232 step:75K smpl:602K ep:1K epch:7.88 loss:0.058 grdn:5.449 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:46:17 ts/train.py:232 step:75K smpl:603K ep:1K epch:7.90 loss:0.056 grdn:5.663 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:46:37 ts/train.py:232 step:76K smpl:605K ep:1K epch:7.92 loss:0.058 grdn:5.765 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:46:58 ts/train.py:232 step:76K smpl:606K ep:1K epch:7.94 loss:0.060 grdn:5.842 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:47:18 ts/train.py:232 step:76K smpl:608K ep:1K epch:7.96 loss:0.058 grdn:5.643 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:47:39 ts/train.py:232 step:76K smpl:610K ep:1K epch:7.98 loss:0.057 grdn:5.710 lr:1.0e-05 updt_s:0.102 data_s:0.000
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+INFO 2026-08-14 12:48:00 ts/train.py:232 step:76K smpl:611K ep:1K epch:8.01 loss:0.058 grdn:5.868 lr:1.0e-05 updt_s:0.101 data_s:0.001
+INFO 2026-08-14 12:48:20 ts/train.py:232 step:77K smpl:613K ep:1K epch:8.03 loss:0.055 grdn:5.315 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:48:41 ts/train.py:232 step:77K smpl:614K ep:1K epch:8.05 loss:0.057 grdn:5.680 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:49:01 ts/train.py:232 step:77K smpl:616K ep:1K epch:8.07 loss:0.055 grdn:5.639 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:49:22 ts/train.py:232 step:77K smpl:618K ep:1K epch:8.09 loss:0.056 grdn:5.411 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:49:42 ts/train.py:232 step:77K smpl:619K ep:1K epch:8.11 loss:0.056 grdn:5.625 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:50:03 ts/train.py:232 step:78K smpl:621K ep:1K epch:8.13 loss:0.058 grdn:5.799 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:50:23 ts/train.py:232 step:78K smpl:622K ep:1K epch:8.15 loss:0.058 grdn:5.870 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:50:44 ts/train.py:232 step:78K smpl:624K ep:1K epch:8.17 loss:0.058 grdn:5.386 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:51:04 ts/train.py:232 step:78K smpl:626K ep:1K epch:8.19 loss:0.055 grdn:5.440 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:51:24 ts/train.py:232 step:78K smpl:627K ep:1K epch:8.22 loss:0.056 grdn:5.452 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:51:45 ts/train.py:232 step:79K smpl:629K ep:1K epch:8.24 loss:0.055 grdn:5.339 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:52:05 ts/train.py:232 step:79K smpl:630K ep:1K epch:8.26 loss:0.056 grdn:5.306 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:52:26 ts/train.py:232 step:79K smpl:632K ep:1K epch:8.28 loss:0.055 grdn:5.421 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:52:47 ts/train.py:232 step:79K smpl:634K ep:1K epch:8.30 loss:0.056 grdn:5.367 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:53:07 ts/train.py:232 step:79K smpl:635K ep:1K epch:8.32 loss:0.057 grdn:5.603 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:53:28 ts/train.py:232 step:80K smpl:637K ep:1K epch:8.34 loss:0.055 grdn:5.464 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:53:48 ts/train.py:232 step:80K smpl:638K ep:1K epch:8.36 loss:0.057 grdn:5.123 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:54:09 ts/train.py:232 step:80K smpl:640K ep:1K epch:8.38 loss:0.056 grdn:5.565 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:54:09 ts/train.py:241 Checkpoint policy after step 80000
+INFO 2026-08-14 12:54:30 ts/train.py:232 step:80K smpl:642K ep:1K epch:8.40 loss:0.057 grdn:5.774 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:54:51 ts/train.py:232 step:80K smpl:643K ep:1K epch:8.42 loss:0.056 grdn:5.723 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:55:11 ts/train.py:232 step:81K smpl:645K ep:1K epch:8.45 loss:0.054 grdn:5.399 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:55:32 ts/train.py:232 step:81K smpl:646K ep:1K epch:8.47 loss:0.055 grdn:5.343 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:55:53 ts/train.py:232 step:81K smpl:648K ep:1K epch:8.49 loss:0.054 grdn:5.280 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:56:13 ts/train.py:232 step:81K smpl:650K ep:1K epch:8.51 loss:0.056 grdn:5.901 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:56:34 ts/train.py:232 step:81K smpl:651K ep:1K epch:8.53 loss:0.056 grdn:5.495 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:56:54 ts/train.py:232 step:82K smpl:653K ep:1K epch:8.55 loss:0.055 grdn:5.451 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:57:15 ts/train.py:232 step:82K smpl:654K ep:1K epch:8.57 loss:0.056 grdn:5.545 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 12:57:36 ts/train.py:232 step:82K smpl:656K ep:1K epch:8.59 loss:0.054 grdn:5.371 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:57:56 ts/train.py:232 step:82K smpl:658K ep:1K epch:8.61 loss:0.055 grdn:5.308 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:58:17 ts/train.py:232 step:82K smpl:659K ep:1K epch:8.63 loss:0.055 grdn:5.426 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:58:38 ts/train.py:232 step:83K smpl:661K ep:1K epch:8.66 loss:0.055 grdn:5.391 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:58:58 ts/train.py:232 step:83K smpl:662K ep:1K epch:8.68 loss:0.054 grdn:5.540 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:59:19 ts/train.py:232 step:83K smpl:664K ep:1K epch:8.70 loss:0.054 grdn:5.412 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 12:59:40 ts/train.py:232 step:83K smpl:666K ep:1K epch:8.72 loss:0.056 grdn:5.673 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:00:01 ts/train.py:232 step:83K smpl:667K ep:1K epch:8.74 loss:0.054 grdn:5.255 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:00:21 ts/train.py:232 step:84K smpl:669K ep:1K epch:8.76 loss:0.055 grdn:5.456 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:00:42 ts/train.py:232 step:84K smpl:670K ep:1K epch:8.78 loss:0.055 grdn:5.225 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:01:03 ts/train.py:232 step:84K smpl:672K ep:1K epch:8.80 loss:0.055 grdn:5.437 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 13:01:24 ts/train.py:232 step:84K smpl:674K ep:1K epch:8.82 loss:0.053 grdn:5.251 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:01:45 ts/train.py:232 step:84K smpl:675K ep:1K epch:8.84 loss:0.055 grdn:5.394 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:02:05 ts/train.py:232 step:85K smpl:677K ep:1K epch:8.87 loss:0.055 grdn:5.534 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:02:26 ts/train.py:232 step:85K smpl:678K ep:1K epch:8.89 loss:0.055 grdn:5.233 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:02:47 ts/train.py:232 step:85K smpl:680K ep:1K epch:8.91 loss:0.056 grdn:5.585 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:03:08 ts/train.py:232 step:85K smpl:682K ep:1K epch:8.93 loss:0.054 grdn:5.452 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 13:03:28 ts/train.py:232 step:85K smpl:683K ep:1K epch:8.95 loss:0.056 grdn:5.422 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:03:49 ts/train.py:232 step:86K smpl:685K ep:1K epch:8.97 loss:0.054 grdn:5.288 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:04:10 ts/train.py:232 step:86K smpl:686K ep:1K epch:8.99 loss:0.052 grdn:5.262 lr:1.0e-05 updt_s:0.103 data_s:0.000
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+INFO 2026-08-14 13:04:31 ts/train.py:232 step:86K smpl:688K ep:1K epch:9.01 loss:0.053 grdn:5.434 lr:1.0e-05 updt_s:0.103 data_s:0.002
+INFO 2026-08-14 13:04:52 ts/train.py:232 step:86K smpl:690K ep:1K epch:9.03 loss:0.055 grdn:5.269 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 13:05:13 ts/train.py:232 step:86K smpl:691K ep:1K epch:9.05 loss:0.053 grdn:5.233 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:05:33 ts/train.py:232 step:87K smpl:693K ep:1K epch:9.07 loss:0.054 grdn:5.144 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:05:54 ts/train.py:232 step:87K smpl:694K ep:1K epch:9.10 loss:0.052 grdn:5.254 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:06:15 ts/train.py:232 step:87K smpl:696K ep:1K epch:9.12 loss:0.054 grdn:5.295 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:06:35 ts/train.py:232 step:87K smpl:698K ep:1K epch:9.14 loss:0.054 grdn:5.312 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:06:56 ts/train.py:232 step:87K smpl:699K ep:1K epch:9.16 loss:0.053 grdn:5.175 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:07:17 ts/train.py:232 step:88K smpl:701K ep:1K epch:9.18 loss:0.053 grdn:5.076 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:07:38 ts/train.py:232 step:88K smpl:702K ep:1K epch:9.20 loss:0.053 grdn:5.476 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:07:58 ts/train.py:232 step:88K smpl:704K ep:1K epch:9.22 loss:0.053 grdn:5.344 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:08:19 ts/train.py:232 step:88K smpl:706K ep:1K epch:9.24 loss:0.052 grdn:5.242 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:08:40 ts/train.py:232 step:88K smpl:707K ep:1K epch:9.26 loss:0.053 grdn:5.188 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:09:00 ts/train.py:232 step:89K smpl:709K ep:1K epch:9.28 loss:0.052 grdn:5.230 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:09:21 ts/train.py:232 step:89K smpl:710K ep:1K epch:9.31 loss:0.053 grdn:5.086 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:09:42 ts/train.py:232 step:89K smpl:712K ep:1K epch:9.33 loss:0.053 grdn:5.308 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:10:03 ts/train.py:232 step:89K smpl:714K ep:1K epch:9.35 loss:0.055 grdn:5.372 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:10:23 ts/train.py:232 step:89K smpl:715K ep:1K epch:9.37 loss:0.052 grdn:5.304 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:10:44 ts/train.py:232 step:90K smpl:717K ep:1K epch:9.39 loss:0.052 grdn:4.706 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:11:05 ts/train.py:232 step:90K smpl:718K ep:1K epch:9.41 loss:0.054 grdn:5.354 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 13:11:26 ts/train.py:232 step:90K smpl:720K ep:1K epch:9.43 loss:0.052 grdn:5.222 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:11:26 ts/train.py:241 Checkpoint policy after step 90000
+INFO 2026-08-14 13:11:47 ts/train.py:232 step:90K smpl:722K ep:2K epch:9.45 loss:0.052 grdn:5.140 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:12:08 ts/train.py:232 step:90K smpl:723K ep:2K epch:9.47 loss:0.051 grdn:5.289 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:12:28 ts/train.py:232 step:91K smpl:725K ep:2K epch:9.49 loss:0.053 grdn:5.157 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:12:49 ts/train.py:232 step:91K smpl:726K ep:2K epch:9.51 loss:0.052 grdn:5.157 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:13:10 ts/train.py:232 step:91K smpl:728K ep:2K epch:9.54 loss:0.053 grdn:5.425 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:13:31 ts/train.py:232 step:91K smpl:730K ep:2K epch:9.56 loss:0.052 grdn:5.227 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:13:51 ts/train.py:232 step:91K smpl:731K ep:2K epch:9.58 loss:0.051 grdn:5.081 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:14:12 ts/train.py:232 step:92K smpl:733K ep:2K epch:9.60 loss:0.053 grdn:5.047 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:14:33 ts/train.py:232 step:92K smpl:734K ep:2K epch:9.62 loss:0.052 grdn:5.059 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 13:14:53 ts/train.py:232 step:92K smpl:736K ep:2K epch:9.64 loss:0.052 grdn:5.196 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 13:15:14 ts/train.py:232 step:92K smpl:738K ep:2K epch:9.66 loss:0.052 grdn:5.413 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 13:15:34 ts/train.py:232 step:92K smpl:739K ep:2K epch:9.68 loss:0.052 grdn:5.238 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 13:15:55 ts/train.py:232 step:93K smpl:741K ep:2K epch:9.70 loss:0.051 grdn:5.152 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 13:16:15 ts/train.py:232 step:93K smpl:742K ep:2K epch:9.72 loss:0.051 grdn:4.915 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 13:16:36 ts/train.py:232 step:93K smpl:744K ep:2K epch:9.75 loss:0.050 grdn:5.051 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 13:16:56 ts/train.py:232 step:93K smpl:746K ep:2K epch:9.77 loss:0.053 grdn:5.362 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 13:17:17 ts/train.py:232 step:93K smpl:747K ep:2K epch:9.79 loss:0.052 grdn:5.050 lr:1.0e-05 updt_s:0.102 data_s:0.000
+INFO 2026-08-14 13:17:38 ts/train.py:232 step:94K smpl:749K ep:2K epch:9.81 loss:0.051 grdn:5.135 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:17:58 ts/train.py:232 step:94K smpl:750K ep:2K epch:9.83 loss:0.051 grdn:5.326 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:18:19 ts/train.py:232 step:94K smpl:752K ep:2K epch:9.85 loss:0.053 grdn:5.328 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:18:40 ts/train.py:232 step:94K smpl:754K ep:2K epch:9.87 loss:0.051 grdn:5.293 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:19:00 ts/train.py:232 step:94K smpl:755K ep:2K epch:9.89 loss:0.052 grdn:4.965 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:19:21 ts/train.py:232 step:95K smpl:757K ep:2K epch:9.91 loss:0.049 grdn:4.989 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:19:42 ts/train.py:232 step:95K smpl:758K ep:2K epch:9.93 loss:0.053 grdn:5.067 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:20:02 ts/train.py:232 step:95K smpl:760K ep:2K epch:9.95 loss:0.051 grdn:5.142 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:20:23 ts/train.py:232 step:95K smpl:762K ep:2K epch:9.98 loss:0.051 grdn:5.118 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:20:44 ts/train.py:232 step:95K smpl:763K ep:2K epch:10.00 loss:0.053 grdn:5.326 lr:1.0e-05 updt_s:0.103 data_s:0.000
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/torchvision/io/_video_deprecation_warning.py:5: UserWarning: The video decoding and encoding capabilities of torchvision are deprecated from version 0.22 and will be removed in version 0.24. We recommend that you migrate to TorchCodec, where we'll consolidate the future decoding/encoding capabilities of PyTorch: https://github.com/pytorch/torchcodec
+  warnings.warn(
+INFO 2026-08-14 13:21:05 ts/train.py:232 step:96K smpl:765K ep:2K epch:10.02 loss:0.051 grdn:5.144 lr:1.0e-05 updt_s:0.103 data_s:0.001
+INFO 2026-08-14 13:21:25 ts/train.py:232 step:96K smpl:766K ep:2K epch:10.04 loss:0.051 grdn:5.205 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:21:46 ts/train.py:232 step:96K smpl:768K ep:2K epch:10.06 loss:0.052 grdn:5.165 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 13:22:07 ts/train.py:232 step:96K smpl:770K ep:2K epch:10.08 loss:0.051 grdn:5.146 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:22:28 ts/train.py:232 step:96K smpl:771K ep:2K epch:10.10 loss:0.050 grdn:5.123 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:22:48 ts/train.py:232 step:97K smpl:773K ep:2K epch:10.12 loss:0.049 grdn:4.848 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 13:23:09 ts/train.py:232 step:97K smpl:774K ep:2K epch:10.14 loss:0.050 grdn:5.054 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:23:30 ts/train.py:232 step:97K smpl:776K ep:2K epch:10.16 loss:0.051 grdn:5.023 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:23:51 ts/train.py:232 step:97K smpl:778K ep:2K epch:10.19 loss:0.049 grdn:4.908 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:24:11 ts/train.py:232 step:97K smpl:779K ep:2K epch:10.21 loss:0.051 grdn:4.980 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 13:24:32 ts/train.py:232 step:98K smpl:781K ep:2K epch:10.23 loss:0.050 grdn:4.935 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:24:53 ts/train.py:232 step:98K smpl:782K ep:2K epch:10.25 loss:0.049 grdn:4.949 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:25:14 ts/train.py:232 step:98K smpl:784K ep:2K epch:10.27 loss:0.052 grdn:5.078 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:25:35 ts/train.py:232 step:98K smpl:786K ep:2K epch:10.29 loss:0.050 grdn:5.020 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:25:55 ts/train.py:232 step:98K smpl:787K ep:2K epch:10.31 loss:0.049 grdn:4.826 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:26:16 ts/train.py:232 step:99K smpl:789K ep:2K epch:10.33 loss:0.051 grdn:4.798 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 13:26:37 ts/train.py:232 step:99K smpl:790K ep:2K epch:10.35 loss:0.049 grdn:4.984 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:26:58 ts/train.py:232 step:99K smpl:792K ep:2K epch:10.37 loss:0.050 grdn:5.107 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:27:18 ts/train.py:232 step:99K smpl:794K ep:2K epch:10.39 loss:0.049 grdn:4.968 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:27:39 ts/train.py:232 step:99K smpl:795K ep:2K epch:10.42 loss:0.048 grdn:4.688 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:28:00 ts/train.py:232 step:100K smpl:797K ep:2K epch:10.44 loss:0.051 grdn:5.091 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:28:21 ts/train.py:232 step:100K smpl:798K ep:2K epch:10.46 loss:0.050 grdn:5.009 lr:1.0e-05 updt_s:0.104 data_s:0.000
+INFO 2026-08-14 13:28:42 ts/train.py:232 step:100K smpl:800K ep:2K epch:10.48 loss:0.052 grdn:5.264 lr:1.0e-05 updt_s:0.103 data_s:0.000
+INFO 2026-08-14 13:28:42 ts/train.py:241 Checkpoint policy after step 100000
+INFO 2026-08-14 13:28:42 ts/train.py:283 End of training

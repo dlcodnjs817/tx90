@@ -1,0 +1,153 @@
+{
+  "total_episodes": 163,
+  "total_frames": 78009,
+  "total_videos": 326,
+  "codebase_version": "v2.1",
+  "robot_type": "omx_f",
+  "total_tasks": 1,
+  "total_chunks": 1,
+  "chunks_size": 1000,
+  "fps": 30,
+  "splits": {
+    "train": "0:162"
+  },
+  "data_path": "data/chunk-{episode_chunk:03d}/episode_{episode_index:06d}.parquet",
+  "video_path": "videos/chunk-{episode_chunk:03d}/{video_key}/episode_{episode_index:06d}.mp4",
+  "features": {
+    "timestamp": {
+      "dtype": "float32",
+      "shape": [
+        1
+      ],
+      "names": null
+    },
+    "frame_index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ],
+      "names": null
+    },
+    "episode_index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ],
+      "names": null
+    },
+    "index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ],
+      "names": null
+    },
+    "task_index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ],
+      "names": null
+    },
+    "observation.images.camera1": {
+      "dtype": "video",
+      "names": [
+        "height",
+        "width",
+        "channels"
+      ],
+      "shape": [
+        480,
+        640,
+        3
+      ],
+      "info": {
+        "video.height": 480,
+        "video.width": 640,
+        "video.channels": 3,
+        "video.codec": "libx264",
+        "video.pix_fmt": "yuv420p"
+      }
+    },
+    "observation.images.camera2": {
+      "dtype": "video",
+      "names": [
+        "height",
+        "width",
+        "channels"
+      ],
+      "shape": [
+        480,
+        640,
+        3
+      ],
+      "info": {
+        "video.height": 480,
+        "video.width": 640,
+        "video.channels": 3,
+        "video.codec": "libx264",
+        "video.pix_fmt": "yuv420p"
+      }
+    },
+    "observation.state": {
+      "dtype": "float32",
+      "shape": [
+        7
+      ],
+      "names": [
+        "x",
+        "y",
+        "z",
+        "rx",
+        "ry",
+        "rz",
+        "gripper"
+      ]
+    },
+    "action": {
+      "dtype": "float32",
+      "shape": [
+        7
+      ],
+      "names": [
+        "x",
+        "y",
+        "z",
+        "rx",
+        "ry",
+        "rz",
+        "gripper"
+      ]
+    }
+  },
+  "tx90_transform": {
+    "s": 0.9998376755263368,
+    "R": [
+      [
+        0.9999999933808772,
+        -0.00011505757472863729,
+        -2.630950887666286e-21
+      ],
+      [
+        0.00011505757190170453,
+        0.9999999688111539,
+        0.00022167418890644422
+      ],
+      [
+        -2.550529455551064e-08,
+        -0.00022167418743915552,
+        0.9999999754302766
+      ]
+    ],
+    "t": [
+      0.49993511275830826,
+      -0.014230577835071152,
+      0.30585922541423555
+    ],
+    "frame": "base_link",
+    "ee_link": "tool0",
+    "tool_fix": "Ry(+90deg)  OMX end_effector_link(+X) -> TX90 tool0(+Z)",
+    "source": "/home/kim/omx_act_pick_and_place_v4_162_ee",
+    "residual_mean_mm": 0.02292030988524712
+  }
+}

@@ -1,0 +1,21 @@
+{
+ "source": "dlcodnjs/tx90_act_pick_and_place_v5_ee",
+ "date": "2026-08-14",
+ "offset_m": [
+  -0.2,
+  0.15,
+  0.0
+ ],
+ "anchor_hz": 6,
+ "anchor_k": 5,
+ "smooth_window": 7,
+ "state_def": "action[t-1] (perfect tracking)",
+ "chain": "seed=prev, fold 2pi, reject>90deg, perturb x6, nudge j4/j6 3deg",
+ "dp_fallback_episodes": "see report.json",
+ "validation": {
+  "episodes_ok": "159/159",
+  "max_frame_jump_deg": 16.22,
+  "fk_pos_err_max_mm": 5.1,
+  "knn_multimodal": "0/4770"
+ }
+}
